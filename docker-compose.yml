@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16
+    container_name: practical_galois
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1610
+      POSTGRES_DB: eveDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+#have to add volumes
+volumes:
+  postgres_data:
