@@ -16,7 +16,7 @@ router.post("/signup", async (req, res) => {
   const parse_req_body = reqbody.safeParse(req.body);
 
   if (!parse_req_body.success) {
-    return res.status(411).json({
+    return res.status(400).json({
       message: "incorrect format",
       err: parse_req_body.error,
     });
@@ -28,7 +28,7 @@ router.post("/signup", async (req, res) => {
       email,
     ]);
     if (user.rows.length > 0) {
-      res.status(409).json({
+      return res.status(409).json({
         message: "User already Exits",
       });
     }
@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
 
   const parse_req_body = reqbody.safeParse(req.body);
   if (!parse_req_body.success) {
-    return res.status(411).json({
+    return res.status(400).json({
       message: "incorrect format",
       err: parse_req_body.error,
     });
@@ -69,7 +69,7 @@ router.post("/login", async (req, res) => {
     );
 
     if (user.rows.length === 0) {
-      return res.status(411).json({
+      return res.status(401).json({
         message: "incorret email of password",
       });
     }
