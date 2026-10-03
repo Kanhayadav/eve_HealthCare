@@ -75,7 +75,7 @@ Payments are simulated as required by the assignment. Webhooks use a unique `eve
 
 ### Authentication & Validation
 
-I used JWT authentication with HTTP-only cookies and bcrypt for password hashing.
+I used JWT authentication with HTTP-only cookies and bcrypt for password hashing+salting.
 
 Zod is used to validate request bodies before processing them.
 
@@ -101,6 +101,7 @@ offset = (page - 1) × limit
 - Failed payment marks the booking as failed.
 - `eventId` is unique for each payment event.
 - PostgreSQL is used as the primary database.
+- Added Hashing + salting for better security
 
 ---
 
@@ -110,8 +111,10 @@ offset = (page - 1) × limit
 - Add centralized error handling and structured logging.
 - Add Redis caching.
 - Move payment processing to a background queue.
-- Add database migrations.
+- Add database migrations or change to mongo DB for future changes as the system would require schema updates
+- If PostGres is mandatory then will add Prisma ORM to make my Life as lil easy for migrations 
 - Add production deployment and monitoring.
+- Migrate to a Turpo-repo
 
 ---
 
